@@ -18,7 +18,7 @@ namespace JurassicPark
             // var database = new DinoDB();
             //view add remove transfer summary or quit
 
-            //Four Pillars of OOP
+            //Four Pillars of Coding OOP
             //Abstraction - Polymorphism - Inheritance - Encapsulation
         }
     }
