@@ -15,6 +15,10 @@ namespace JurassicPark
             //what do we want to do?
 
             //create a dinosaur
+            //add a dinosaur to the list
+
+            // var dinosaurs = new List<Dinosaur>();
+            // var database = new DinoDB();
 
 
         }
