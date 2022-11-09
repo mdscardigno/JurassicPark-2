@@ -16,5 +16,10 @@ namespace JurassicPark
                 return $"{Name} is a {DietType} dinosaur that weighs {Weight} pounds and was acquired on {WhenAcquired}. It is currently in enclosure {EnclosureNumber}.";
             }
         }
+        //or we can also do it like this
+        // public string Description()
+        // {
+        //     return $"{Name} is a {DietType} dinosaur that weighs {Weight} pounds and was acquired on {WhenAcquired}. It is currently in enclosure {EnclosureNumber}.";
+        // }
     }
 }

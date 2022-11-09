@@ -12,15 +12,14 @@ namespace JurassicPark
         static void Main(string[] args)
         {
             DisplayGreeting();
-            //what do we want to do?
-
             //create a dinosaur
             //add a dinosaur to the list
-
             // var dinosaurs = new List<Dinosaur>();
             // var database = new DinoDB();
+            //view add remove transfer summary or quit
 
-
+            //Four Pillars of OOP
+            //Abstraction - Polymorphism - Inheritance - Encapsulation
         }
     }
 }
