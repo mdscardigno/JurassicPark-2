@@ -12,6 +12,10 @@ namespace JurassicPark
         static void Main(string[] args)
         {
             DisplayGreeting();
+            //what do we want to do?
+
+            //create a dinosaur
+
 
         }
     }
