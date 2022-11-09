@@ -2,11 +2,17 @@
 
 namespace JurassicPark
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      Console.WriteLine("Welcome to C#");
+        //UI
+        static void DisplayGreeting()
+        {
+            Console.WriteLine("Welcome to Jurassic Park!");
+        }
+        static void Main(string[] args)
+        {
+            DisplayGreeting();
+
+        }
     }
-  }
 }
