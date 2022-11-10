@@ -57,11 +57,11 @@ namespace JurassicPark
                         break;
                     case "A":
                         //add
-                        Console.WriteLine("Adding dinosaur");
+                        AddDinosaur(database);
                         break;
                     case "R":
                         //remove
-                        Console.WriteLine("Removing dinosaur");
+                        RemoveDinosaur(database);
                         break;
                     case "T":
                         //transfer
@@ -82,7 +82,17 @@ namespace JurassicPark
                 }//end of Switch
             }//end of while loop
         }//end of Main
-
+        private static void AddDinosaur(DinosaurDB database)
+        {
+            var dinosaur = new Dinosaur();
+            dinosaur.Name = PromptForString("What is the name of the dinosaur?: ");
+            dinosaur.DietType = PromptForString("What is the diet type of the dinosaur?: ");
+            // dinosaur.WhenAcquired = ;
+            dinosaur.Weight = PromptForInteger("What is the weight of the dinosaur?: ");
+            dinosaur.EnclosureNumber = PromptForInteger("What is the enclosure number of the dinosaur?: ");
+            System.Console.WriteLine($"Hello, {dinosaur.Name} is a {dinosaur.DietType} dinosaur weighing {dinosaur.Weight} pounds and is in enclosure {dinosaur.EnclosureNumber}.");
+            database.AddDinosaur(dinosaur);
+        }
         private static void RemoveDinosaur(DinosaurDB database)
         {
             //search database for dinosaur
