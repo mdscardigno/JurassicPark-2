@@ -69,7 +69,7 @@ namespace JurassicPark
                         break;
                     case "S":
                         //summary
-                        Console.WriteLine("Describing dinosaur");
+                        SummarizeAllDinosaurs(database);
                         break;
                     case "Q":
                         //quit
@@ -84,13 +84,17 @@ namespace JurassicPark
         }//end of Main
         private static void AddDinosaur(DinosaurDB database)
         {
+            //Add a Dinosaur
             var dinosaur = new Dinosaur();
-            dinosaur.Name = PromptForString("What is the name of the dinosaur?: ");
-            dinosaur.DietType = PromptForString("What is the diet type of the dinosaur?: ");
-            // dinosaur.WhenAcquired = ;
-            dinosaur.Weight = PromptForInteger("What is the weight of the dinosaur?: ");
-            dinosaur.EnclosureNumber = PromptForInteger("What is the enclosure number of the dinosaur?: ");
-            System.Console.WriteLine($"Hello, {dinosaur.Name} is a {dinosaur.DietType} dinosaur weighing {dinosaur.Weight} pounds and is in enclosure {dinosaur.EnclosureNumber}.");
+
+            //we set the properties of the dinosaur
+            dinosaur.Name = PromptForString("Enter the name of the dinosaur: ");
+            dinosaur.DietType = PromptForString("Enter the diet type of the dinosaur: ");
+            dinosaur.WhenAcquired = DateTime.Now;
+            dinosaur.Weight = PromptForInteger("Enter the weight of the dinosaur: ");
+            dinosaur.EnclosureNumber = PromptForInteger("Enter the enclosure number of the dinosaur: ");
+            dinosaur.Description();
+
             database.AddDinosaur(dinosaur);
         }
         private static void RemoveDinosaur(DinosaurDB database)
@@ -124,6 +128,16 @@ namespace JurassicPark
 
                 database.RemoveDinosaur(dinoName);
                 Console.WriteLine($"{dinoName} has been removed from the database.");
+            }
+        }
+        private static void SummarizeAllDinosaurs(DinosaurDB database)
+        {
+            //READ 
+            //get all dinosaurs from database
+            foreach (var dinosaur in database.GetAllDinosaurs())
+            {
+                //display each dinosaur in the database
+                Console.WriteLine($"Dinosaur named {dinosaur.Name} was found in the Jurassic Park Database.");//can I display this any better?
             }
         }
     }//end of class Program
