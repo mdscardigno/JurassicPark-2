@@ -82,5 +82,39 @@ namespace JurassicPark
                 }//end of Switch
             }//end of while loop
         }//end of Main
+
+        private static void RemoveDinosaur(DinosaurDB database)
+        {
+            //search database for dinosaur
+            //prompt user for name of dinosaur to remove
+            var dinoName = PromptForString("What is the name of the dinosaur you want to remove? ");
+            //remove dinosaur from database
+            var dinosaurToRemove = database.FindOneDinosaur(dinoName);
+            //if we did not find the dino in the database
+            if (dinosaurToRemove == null)
+            {
+                Console.WriteLine($"Sorry. We could not find a dinosaur with the name {dinoName} within the Jurassic Park Database.");
+            }
+            else
+            {
+                //if dinosaur is found, show details of dinosaur
+                Console.WriteLine($"Dinosaur named {dinosaurToRemove.Name} was found in the Jurassic Park Database.");
+                Console.WriteLine($"Are you sure you want to remove {dinosaurToRemove.Name} from the Jurassic Park Database? (Y/N)");
+                //if no, do nothing and return to menu
+                if (Console.ReadLine().ToUpper() == "N")
+                {
+                    System.Console.WriteLine("Dinosaur was not removed from the Jurassic Park Database.");
+                }
+                //if yes, remove dinosaur from database
+                else
+                {
+                    database.RemoveDinosaur(dinoName);
+                    Console.WriteLine($"Dinosaur named {dinosaurToRemove.Name} was removed from the Jurassic Park Database.");
+                }
+
+                database.RemoveDinosaur(dinoName);
+                Console.WriteLine($"{dinoName} has been removed from the database.");
+            }
+        }
     }//end of class Program
 }//end of namespace JurassicPark
