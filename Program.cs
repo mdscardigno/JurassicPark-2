@@ -12,13 +12,8 @@ namespace JurassicPark
         }
         static void DisplayMenu()
         {
-            Console.WriteLine("1. View all dinosaurs");
-            Console.WriteLine("2. Add a dinosaur");
-            Console.WriteLine("3. Remove a dinosaur");
-            Console.WriteLine("4. Transfer a dinosaur");
-            Console.WriteLine("5. View heaviest dinosaur");
-            Console.WriteLine("6. View diet type");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine();
+            Console.WriteLine("What would you like to do?: (V)iew\n (A)dd\n (R)emove\n (T)ransfer\n (S)ummary\n (Q)uit");
         }
 
 
@@ -27,10 +22,44 @@ namespace JurassicPark
             DisplayGreeting();
             //create a dinosaur
 
-            // var database = new DinoDB();
-            //view add remove transfer summary or quit
-
-            DisplayMenu();
-        }
-    }
-}
+            var database = new DinosaurDB();
+            var keepShowingMenu = true;
+            while (keepShowingMenu)
+            {
+                DisplayMenu();
+                var choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "V":
+                        //view
+                        Console.WriteLine("Viewing all dinosaurs");
+                        break;
+                    case "A":
+                        //add
+                        Console.WriteLine("Adding dinosaur");
+                        break;
+                    case "R":
+                        //remove
+                        Console.WriteLine("Removing dinosaur");
+                        break;
+                    case "T":
+                        //transfer
+                        Console.WriteLine("Transfering dinosaur");
+                        break;
+                    case "S":
+                        //summary
+                        Console.WriteLine("Describing dinosaur");
+                        break;
+                    case "Q":
+                        //quit
+                        Console.WriteLine("Exiting Jurassic Park. Good bye!");
+                        keepShowingMenu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice");
+                        break;
+                }//end of Switch
+            }//end of while loop
+        }//end of Main
+    }//end of class Program
+}//end of namespace JurassicPark
