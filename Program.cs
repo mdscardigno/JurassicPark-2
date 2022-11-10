@@ -10,6 +10,27 @@ namespace JurassicPark
         {
             Console.WriteLine("Welcome to Jurassic Park!");
         }
+        static string PromptForString(string prompt)
+        {
+            Console.Write(prompt);
+            var userInput = Console.ReadLine();
+            return userInput;
+        }
+        static int PromptForInteger(string prompt)
+        {
+            Console.Write(prompt);
+            int userInput;
+            var isThisGoodInput = int.TryParse(Console.ReadLine(), out userInput);
+            if (isThisGoodInput)
+            {
+                return userInput;
+            }
+            else
+            {
+                Console.WriteLine("That is not a valid input. Please try again.");
+                return 0;
+            }
+        }
         static void DisplayMenu()
         {
             Console.WriteLine();

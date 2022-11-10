@@ -5,20 +5,29 @@ namespace JurassicPark
 {
     public class DinosaurDB
     {
-        private List<Dinosaur> dinosaurs = new List<Dinosaur>();
-
-        public List<Dinosaur> GetAllDinosaurs()
-        {
-            return dinosaurs;
-        }
+        private List<Dinosaur> Dinosaurs { get; set; } = new List<Dinosaur>();
+        //CREATE
+        //BEHAVIOR
         public void AddDinosaur(Dinosaur newDinosaur)
         {
-            dinosaurs.Add(newDinosaur);
+            Dinosaurs.Add(newDinosaur);
         }
-        public Dinosaur FindOneDinosaur(string name)
+        //READ
+        public List<Dinosaur> GetAllDinosaurs()
         {
-            Dinosaur foundDinosaur = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == name);
+            return Dinosaurs;
+        }
+        //READ
+        public Dinosaur FindOneDinosaur(string nameToFind)
+        {
+            Dinosaur foundDinosaur = Dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name.ToUpper().Contains(nameToFind.ToUpper()));
             return foundDinosaur;
+        }
+        //DELETE    
+        public void RemoveDinosaur(string nameToRemove)
+        {
+            Dinosaur foundDinosaur = FindOneDinosaur(nameToRemove);
+            Dinosaurs.Remove(foundDinosaur);
         }
 
     }
