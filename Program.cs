@@ -72,7 +72,7 @@ namespace JurassicPark
                             foreach (var dinosaur in allDinos)
                             {
                                 var enclosureNumber = dinosaur.EnclosureNumber;
-                                Console.WriteLine($"Enclosures containing dinos:\n {enclosureNumber}");
+                                Console.WriteLine($"Enclosure number {enclosureNumber} contains {dinosaur.Name}.");
                             }
                         }
                         else
@@ -119,7 +119,7 @@ namespace JurassicPark
 
             //we set the properties of the dinosaur
             dinosaur.Name = PromptForString("Enter the name of the dinosaur: ");
-            dinosaur.DietType = PromptForString("Enter the diet type of the dinosaur: ");
+            dinosaur.DietType = PromptForString("Enter the diet type of the dinosaur: (C)arvivore or (H)erbivore: ").ToUpper();
             dinosaur.WhenAcquired = DateTime.Now;
             dinosaur.Weight = PromptForInteger("Enter the weight of the dinosaur: ");
             dinosaur.EnclosureNumber = PromptForInteger("Enter the enclosure number of the dinosaur: ");
@@ -164,14 +164,17 @@ namespace JurassicPark
         {
             //READ 
             //get all dinosaurs from database
-            foreach (var dinosaur in database.GetAllDinosaurs())
-            {
-                //display each dinosaur in the database
-                //sort by diet type (carnivore or herbivore)
-                //display total number of carnivores and herbivores
-                //sort alphabetically
-                Console.WriteLine($"Dinosaur named {dinosaur.Name} was found in the Jurassic Park Database.");//can I display this any better?
-            }
+
+            //display each dinosaur in the database
+            //sort by diet type (carnivore or herbivore)
+            //display total number of carnivores and herbivores
+            //sort alphabetically
+            var allCarnivoreDinos = database.GetAllDinosaurs().Where(dinosaur => dinosaur.DietType.Contains("C")).ToList().Count();
+            Console.WriteLine($"Total number of carnivores: {allCarnivoreDinos}");
+            var allHerbivoreDinos = database.GetAllDinosaurs().Where(dinosaur => dinosaur.DietType.Contains("H")).ToList().Count();
+            // foreach (var dinosaur in allHerbivoreDinos)
+            Console.WriteLine($"Total number of herbivores: {allHerbivoreDinos}");
+
         }
         private static void TransferDinosaur(DinosaurDB database)
         {
