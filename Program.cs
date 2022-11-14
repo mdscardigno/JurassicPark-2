@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JurassicPark
 {
@@ -58,8 +59,11 @@ namespace JurassicPark
                         var viewChoice = Console.ReadLine().ToUpper();
                         if (viewChoice == "A")
                         {
-                            // database.ViewDinosaursAlphabetically();
-                            Console.WriteLine("Viewing all dinosaurs Alphabetically");
+                            var allDinos = database.GetAllDinosaurs().OrderBy(dinosaur => dinosaur.Name).ToList();
+                            foreach (var dinosaur in allDinos)
+                            {
+                                dinosaur.Description();
+                            }
                         }
                         else if (viewChoice == "E")
                         {
