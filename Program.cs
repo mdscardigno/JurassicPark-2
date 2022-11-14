@@ -68,7 +68,12 @@ namespace JurassicPark
                         else if (viewChoice == "E")
                         {
                             // database.ViewDinosaursByEnclosure();
-                            Console.WriteLine("Viewing all dinosaurs ByEnclosure");
+                            var allDinos = database.GetAllDinosaurs().OrderBy(dinosaur => dinosaur.EnclosureNumber).ToList();
+                            foreach (var dinosaur in allDinos)
+                            {
+                                var enclosureNumber = dinosaur.EnclosureNumber;
+                                Console.WriteLine($"Enclosures containing dinos:\n {enclosureNumber}");
+                            }
                         }
                         else
                         {
