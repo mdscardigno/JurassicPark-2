@@ -34,7 +34,7 @@ namespace JurassicPark
         static void DisplayMenu()
         {
             Console.WriteLine();
-            Console.WriteLine("What would you like to do?: (V)iew\n (A)dd\n (R)emove\n (T)ransfer\n (S)ummary\n (Q)uit");
+            Console.WriteLine("What would you like to do?:\n (V)iew\n (A)dd\n (R)emove\n (T)ransfer\n (S)ummary\n (Q)uit");
         }
 
 
@@ -53,7 +53,24 @@ namespace JurassicPark
                 {
                     case "V":
                         //view
-                        Console.WriteLine("Viewing all dinosaurs");
+                        //does the user want to see the dinosaurs in alphabetical order or by enclosure number?
+                        Console.WriteLine("Would you like to see the dinosaurs in (A)lphabetical order or by (E)nclosure number?");
+                        var viewChoice = Console.ReadLine().ToUpper();
+                        if (viewChoice == "A")
+                        {
+                            // database.ViewDinosaursAlphabetically();
+                            Console.WriteLine("Viewing all dinosaurs Alphabetically");
+                        }
+                        else if (viewChoice == "E")
+                        {
+                            // database.ViewDinosaursByEnclosure();
+                            Console.WriteLine("Viewing all dinosaurs ByEnclosure");
+                        }
+                        else
+                        {
+                            Console.WriteLine("That is not a valid input. Please try again.");
+                        }
+
                         break;
                     case "A":
                         //add
@@ -65,10 +82,14 @@ namespace JurassicPark
                         break;
                     case "T":
                         //transfer
-                        Console.WriteLine("Transfering dinosaur");
+                        TransferDinosaur(database);
                         break;
                     case "S":
-                        //summary
+                        //summary of all carnivore and herbivore
+                        Console.WriteLine("Viewing summary of all carnivores and herbivores");
+                        //is it carnivore or herbivore? //make a method for this
+                        //print the total of carnivore and herbivores
+
                         SummarizeAllDinosaurs(database);
                         break;
                     case "Q":
@@ -137,8 +158,53 @@ namespace JurassicPark
             foreach (var dinosaur in database.GetAllDinosaurs())
             {
                 //display each dinosaur in the database
+                //sort by diet type (carnivore or herbivore)
+                //display total number of carnivores and herbivores
+                //sort alphabetically
                 Console.WriteLine($"Dinosaur named {dinosaur.Name} was found in the Jurassic Park Database.");//can I display this any better?
             }
+        }
+        private static void TransferDinosaur(DinosaurDB database)
+        {
+            //prompt for the name of the dinosaur to transfer
+            var dinosaurNameToTransfer = PromptForString("What is the name of the dinosaur you want to transfer? ");
+            //search database for the dinoNameToTransfer and return the dinosaur
+            Dinosaur foundDinosaur = database.FindOneDinosaur(dinosaurNameToTransfer);
+            //if we did not find the dino in the database
+            if (foundDinosaur == null)
+            {
+                Console.WriteLine($"Sorry. We could not find a dinosaur with the name {dinosaurNameToTransfer} within the Jurassic Park Database.");
+                Console.WriteLine("Would you like to add the dinosaur you are searching for to the Jurassic Park Database? (Y/N)");
+                if (Console.ReadLine().ToUpper() == "Y")
+                {
+                    AddDinosaur(database);
+                }
+                else
+                {
+                    Console.WriteLine("Dinosaur was not added to the Jurassic Park Database.");
+                }
+            }
+            else
+            {
+                //if dinosaur is found, show details of dinosaur
+                Console.WriteLine($"Dinosaur named {foundDinosaur.Name} was found in enclosure number: {foundDinosaur.EnclosureNumber} of the Jurassic Park Database.");
+                //prompt for new enclosure number
+                var newEnclosureNumber = PromptForInteger("What is the new enclosure number you want to transfer the dinosaur to? ");
+                //is the new enclosure number valid?
+                if (newEnclosureNumber < 1 || newEnclosureNumber > 100)
+                {
+                    Console.WriteLine("Sorry. That is not a valid enclosure number. Please try again.");
+                }
+                else
+                {
+                    //if yes, transfer dinosaur to new enclosure number
+                    foundDinosaur.EnclosureNumber = newEnclosureNumber;
+                    //display the dinosaur's new enclosure number
+                    Console.WriteLine($"Dinosaur named {foundDinosaur.Name} was transferred to enclosure number: {foundDinosaur.EnclosureNumber} of the Jurassic Park Database.");
+                }
+            }
+            //prompt for the new enclosure number
+
         }
     }//end of class Program
 }//end of namespace JurassicPark

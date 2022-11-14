@@ -30,6 +30,12 @@ namespace JurassicPark
             Dinosaur foundDinosaur = FindOneDinosaur(nameToRemove);
             Dinosaurs.Remove(foundDinosaur);
         }
+        //TRANSFER
+        public void TransferDinosaur(string nameToTransfer, int newEnclosureNumber)
+        {
+            Dinosaur foundDinosaur = FindOneDinosaur(nameToTransfer);
+            foundDinosaur.EnclosureNumber = newEnclosureNumber;
+        }
 
     }
 }
